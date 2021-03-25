@@ -8,6 +8,34 @@ def dist(a, b):
     return distance
 
 
+def cross_product(list1, list2):
+    result = list1[0] * list2[1] - list1[1] * list2[0]
+    return result
+
+
+def intersect(edge1, edge2):
+    x_max_1 = max(edge1.start.x, edge1.end.x)
+    x_min_1 = min(edge1.start.x, edge1.end.x)
+    y_max_1 = max(edge1.start.y, edge1.end.y)
+    y_min_1 = min(edge1.start.y, edge1.end.y)
+    x_max_2 = max(edge2.start.x, edge2.end.x)
+    x_min_2 = min(edge2.start.x, edge2.end.x)
+    y_max_2 = max(edge2.start.y, edge2.end.y)
+    y_min_2 = min(edge2.start.y, edge2.end.y)
+    if x_max_2 < x_min_1 or y_max_2 < y_min_1:
+        return False
+    elif x_max_1 < x_min_2 or y_max_1 < y_min_2:
+        return False
+    else:
+        CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
+        CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
+        CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
+        if cross_product(CA, CD)*cross_product(CB, CD)<= 0:
+            return True
+        else:
+            return False
+
+
 class Node:
     def __init__(self, x, y):
         self.x = x
@@ -21,6 +49,7 @@ class Vertice:
     def __init__(self, node, edge=None):
         self.node = node
         self.edge_position = None
+        self.edge = edge
         self.check_position(node, edge)
 
     def check_position(self, node, edge):
