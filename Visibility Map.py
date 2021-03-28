@@ -1,4 +1,4 @@
-from geometry import Node,Edge,Vertice,Polygon,intersect
+from geometry import Node,Edge,Vertex,Polygon,intersect
 from math import atan2,pi
 import bisect
 

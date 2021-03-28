@@ -1,11 +1,4 @@
-from math import sqrt
-
-
-def dist(a, b):
-    delta_x = a.x - b.x
-    delta_y = a.y - b.y
-    distance = sqrt(delta_y ^ 2 + delta_x ^ 2)
-    return distance
+from distance import dist
 
 
 def cross_product(list1, list2):
@@ -14,6 +7,7 @@ def cross_product(list1, list2):
 
 
 def intersect(edge1, edge2):
+    # determine if edge1 and edge2 are intersect each other
     x_max_1 = max(edge1.start.x, edge1.end.x)
     x_min_1 = min(edge1.start.x, edge1.end.x)
     y_max_1 = max(edge1.start.y, edge1.end.y)
@@ -30,7 +24,7 @@ def intersect(edge1, edge2):
         CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
         CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
         CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
-        if cross_product(CA, CD)*cross_product(CB, CD)<= 0:
+        if cross_product(CA, CD) * cross_product(CB, CD) <= 0:
             return True
         else:
             return False
@@ -45,7 +39,7 @@ class Node:
         return "x: " + str(self.x) + ", y: " + str(self.y)
 
 
-class Vertice:
+class Vertex:
     def __init__(self, node, edge=None):
         self.node = node
         self.edge_position = None
@@ -66,6 +60,20 @@ class Edge:
         self.start = start
         self.end = end
         self.length = dist(start, end)
+        self.slope = 0
+        self.intercept = 0
+        self.calculate()
+
+    def calculate(self):
+        if self.start.x == self.end.x:
+            self.slope = 0
+            self.intercept = self.start.y
+        elif self.start.y == self.end.y:
+            self.slope = float("inf")
+            self.intercept = float("-inf")
+        else:
+            self.slope = (self.start.y - self.end.y) / (self.start.x - self.end.x)
+            self.intercept = self.end.y - self.slope * self.end.x
 
 
 class Polygon:
@@ -76,7 +84,7 @@ class Polygon:
 
     def get_vertices(self):
         for edge in self.edge:
-            if Vertice(edge.start, edge) not in self.vertices:
-                self.vertices.append(Vertice(edge.start, edge))
-            if Vertice(edge.end, edge) not in self.vertices:
-                self.vertices.append(Vertice(edge.end, edge))
+            if Vertex(edge.start, edge) not in self.vertices:
+                self.vertices.append(Vertex(edge.start, edge))
+            if Vertex(edge.end, edge) not in self.vertices:
+                self.vertices.append(Vertex(edge.end, edge))
