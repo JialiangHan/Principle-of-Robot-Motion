@@ -59,20 +59,25 @@ class Edge:
         self.start = start
         self.end = end
         self.length = dist(start, end)
-        self.slope = 0
-        self.intercept = 0
+        # line function: Ax+By+C=0
+        self.A = 0
+        self.B = 0
+        self.C = 0
         self.calculate()
 
     def calculate(self):
         if self.start.x == self.end.x:
-            self.slope = float("inf")
-            self.intercept = float("-inf")
+            self.A = 1
+            self.B = 0
+            self.C = -self.start.x
         elif self.start.y == self.end.y:
-            self.slope = 0
-            self.intercept = self.start.y
+            self.A = 0
+            self.B = 1
+            self.C = -self.start.y
         else:
-            self.slope = (self.start.y - self.end.y) / (self.start.x - self.end.x)
-            self.intercept = self.start.y - self.slope * self.start.x
+            self.A = -(self.start.y - self.end.y) / (self.start.x - self.end.x)
+            self.B = 1
+            self.C = -self.A*self.start.x-self.B*self.start.y
 
 
 class Polygon:
