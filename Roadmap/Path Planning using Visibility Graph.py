@@ -50,3 +50,4 @@ plot_Node(end)
 plot_Polygon(polygon)
 for edge in visibility_graph.visibility_graph:
     plot_Edge(edge)
+#todo plot need on one figure
