@@ -66,14 +66,14 @@ class Edge:
 
     def calculate(self):
         if self.start.x == self.end.x:
-            self.slope = 0
-            self.intercept = self.start.y
-        elif self.start.y == self.end.y:
             self.slope = float("inf")
             self.intercept = float("-inf")
+        elif self.start.y == self.end.y:
+            self.slope = 0
+            self.intercept = self.start.y
         else:
             self.slope = (self.start.y - self.end.y) / (self.start.x - self.end.x)
-            self.intercept = self.end.y - self.slope * self.end.x
+            self.intercept = self.start.y - self.slope * self.start.x
 
 
 class Polygon:
