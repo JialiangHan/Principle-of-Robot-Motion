@@ -7,7 +7,6 @@ def cross_product(list1, list2):
 
 
 def intersect(edge1, edge2):
-    # determine if edge1 and edge2 are intersect each other
     x_max_1 = max(edge1.start.x, edge1.end.x)
     x_min_1 = min(edge1.start.x, edge1.end.x)
     y_max_1 = max(edge1.start.y, edge1.end.y)
