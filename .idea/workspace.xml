@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Roadmap/Visibility Map.py" beforeDir="false" />
+    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="update:&#10;add a py file for distance.py">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roadmap/Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Roadmap/Visibility_Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Visibility_Map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roadmap/distance.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/distance.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roadmap/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/geometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,8 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Roadmap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled2/ARA.py" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
   </component>
   <component name="RunManager" selected="Python.Path Planning using Visibility Graph">
@@ -89,8 +92,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Path Planning using Visibility Graph" />
       <item itemvalue="Python.Roadmap" />
+      <item itemvalue="Python.Path Planning using Visibility Graph" />
     </list>
     <recent_temporary>
       <list>
@@ -114,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616936482574</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="change line function from kx+b=y to Ax+By+C=0">
+      <created>1617023114096</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617023114096</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,10 +141,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update:&#10;add a py file for distance.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="update:&#10;add a py file for distance.py" />
+    <MESSAGE value="change line function from kx+b=y to Ax+By+C=0" />
+    <option name="LAST_COMMIT_MESSAGE" value="change line function from kx+b=y to Ax+By+C=0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Roadmap/Plot.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
