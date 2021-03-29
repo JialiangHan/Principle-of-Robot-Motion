@@ -7,9 +7,23 @@ from math import sqrt
 
 def dist(a, b):
     # a, b are nodes from geometry
+    # Euclidean distance
     delta_x = a.x - b.x
     delta_y = a.y - b.y
-    distance = sqrt(delta_y ^ 2 + delta_x ^ 2)
+    distance = sqrt(delta_y**2 + delta_x**2)
+    return distance
+
+
+def distance_node_to_polygon(node, polygon):
+    # distance between node and polygon,
+    # determine if edge of polygon are visible to node
+    # then calculate distance
+    # return min distance
+    # not consider obstacle
+    distance = float("inf")
+    for edge in polygon.edge:
+        if distance > distance_node_to_segment(node, edge):
+            distance = distance_node_to_segment(node, edge)
     return distance
 
 
@@ -25,12 +39,17 @@ def distance_node_to_segment(node, segment):
 
 
 def line_value(slope, intercept, node):
+    # determine if a node is on which side of line
     result = slope * node.x + intercept - node.y
     return result
 
 
 def perpendicular(node, segment):
     # this function return a line that perpendicular to segment and pass the node
-    slope = -1 / segment.slope
-    intercept = node.y - slope * node.x
+    if segment.slope==0:
+        slope=float("inf")
+        intercept=float("-inf")
+    else:
+        slope = -1 / segment.slope
+        intercept = node.y - slope * node.x
     return slope, intercept
