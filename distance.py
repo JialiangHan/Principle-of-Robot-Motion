@@ -46,6 +46,7 @@ def line_value(slope, intercept, node):
 
 def perpendicular(node, segment):
     # this function return a line that perpendicular to segment and pass the node
+    #TODO need convert kx+b=y to ax+by+c=0 for all line, segment
     if segment.slope==0:
         slope=float("inf")
         intercept=float("-inf")
