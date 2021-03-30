@@ -4,6 +4,7 @@ from math import atan2, pi, cos, sin
 from Plot import plot_Edge, plot_Polygon, plot_Node
 import matplotlib.pyplot as plt
 
+
 class Visibility_Map:
     def __init__(self, start, goal, obstacle):
         self.start = start
@@ -42,8 +43,8 @@ class Visibility_Map:
             if self.visible(node, vertex.node, self.obstacles):
                 self.visibility_graph.append(Edge(node, vertex.node))
             if vertex.edge_position == "start":
-                distance = distance_node_to_segment(node,vertex.edge)
-                temp = (vertex.edge,distance)
+                distance = distance_node_to_segment(node, vertex.edge)
+                temp = (vertex.edge, distance)
                 if temp not in active_list:
                     active_list.append(temp)
                     active_list.sort(key=lambda x: x[1], reverse=False)
