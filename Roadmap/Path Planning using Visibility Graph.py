@@ -17,7 +17,7 @@ start = Node(MIN_X + 1, MIN_Y + 1)
 end = Node(MAX_X - 1, MAX_Y - 1)
 
 # random generate polygon, right now rectangular
-n = 3  # number of vertex
+n = 4  # number of vertex
 m = 2  # number of obstacles
 node_list = []
 edge_list = []
@@ -26,7 +26,7 @@ for i in range(m):
     delta_x = (end.x - start.x) / m
     # delta_y = (end.y - start.y) / m
     for j in range(n):
-        random.seed(j)
+        # random.seed(j)
         x = random.randint(start.x + 1 + i * delta_x, start.x + 1 + (i + 1) * delta_x)
         y = random.randint(start.y + 1 , end.y - 1)
         node_list.append(Node(x, y))

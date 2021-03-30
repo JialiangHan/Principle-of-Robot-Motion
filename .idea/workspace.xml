@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="finished.&#10;&#10;No bu">
-      <change afterPath="$PROJECT_DIR$/.idea/Principle of Robot Motion.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Principle-of-Robot-Motion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Principle-of-Robot-Motion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Roadmap/Computational_Geometry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/Visibility Map.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Visibility_Map.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/distance.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/distance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/geometry.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/geometry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +48,28 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.Path Planning using Visibility Graph">
+  <component name="RunManager" selected="Python.Computational_Geometry">
+    <configuration name="Computational_Geometry" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Principle-of-Robot-Motion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Roadmap" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roadmap/Computational_Geometry.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Path Planning using Visibility Graph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Principle-of-Robot-Motion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,9 +115,11 @@
     <list>
       <item itemvalue="Python.Roadmap" />
       <item itemvalue="Python.Path Planning using Visibility Graph" />
+      <item itemvalue="Python.Computational_Geometry" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Computational_Geometry" />
         <item itemvalue="Python.Path Planning using Visibility Graph" />
       </list>
     </recent_temporary>
@@ -148,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617023114096</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="all bugs fixed, next is to add planning algorithm">
+      <created>1617072264913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617072264913</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,37 +188,42 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change line function from kx+b=y to Ax+By+C=0" />
     <MESSAGE value="update:&#10;add a py file for distance.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="update:&#10;add a py file for distance.py" />
+    <MESSAGE value="all bugs fixed, next is to add planning algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="all bugs fixed, next is to add planning algorithm" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617067894787">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067894787" />
-    <state x="2482" y="103" key="CommitChangelistDialog2" timestamp="1617072077483">
+    <state x="2482" y="103" key="CommitChangelistDialog2" timestamp="1617072263675">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2482" y="103" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072077483" />
+    <state x="2482" y="103" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072263675" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1617073876828">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617073876828" />
     <state x="2660" y="260" key="FileChooserDialogImpl" timestamp="1617067591017">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="260" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067591017" />
-    <state width="949" height="274" key="GridCell.Tab.0.bottom" timestamp="1617072217650">
+    <state width="949" height="274" key="GridCell.Tab.0.bottom" timestamp="1617076039686">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072217650" />
-    <state width="949" height="274" key="GridCell.Tab.0.center" timestamp="1617072217650">
+    <state width="949" height="274" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039686" />
+    <state width="949" height="274" key="GridCell.Tab.0.center" timestamp="1617076039685">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072217650" />
-    <state width="949" height="274" key="GridCell.Tab.0.left" timestamp="1617072217650">
+    <state width="949" height="274" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039685" />
+    <state width="949" height="274" key="GridCell.Tab.0.left" timestamp="1617076039685">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072217650" />
-    <state width="949" height="274" key="GridCell.Tab.0.right" timestamp="1617072217650">
+    <state width="949" height="274" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039685" />
+    <state width="949" height="274" key="GridCell.Tab.0.right" timestamp="1617076039686">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072217650" />
+    <state width="949" height="274" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039686" />
     <state x="2006" y="0" key="MergeDialog" timestamp="1617067420501">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -214,10 +240,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2575" y="342" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067287474" />
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617072006411">
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617073771998">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072006411" />
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617073771998" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
