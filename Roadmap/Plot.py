@@ -14,6 +14,6 @@ def plot_Edge(edge):
 def plot_Polygon(polygon):
     x, y = [], []
     for vertex in polygon.vertices:
-        x.append(vertex.x)
-        y.append(vertex.y)
+        x.append(vertex.node.x)
+        y.append(vertex.node.y)
     plt.fill(x, y, "b")

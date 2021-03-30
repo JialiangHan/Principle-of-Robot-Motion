@@ -10,7 +10,7 @@ def dist(a, b):
     # Euclidean distance
     delta_x = a.x - b.x
     delta_y = a.y - b.y
-    distance = sqrt(delta_y**2 + delta_x**2)
+    distance = sqrt(delta_y ** 2 + delta_x ** 2)
     return distance
 
 
@@ -29,28 +29,34 @@ def distance_node_to_polygon(node, polygon):
 
 def distance_node_to_segment(node, segment):
     # distance between node and segment
-    slope_start, intercept_start = perpendicular(segment.start, segment)
-    slope_end, intercept_end = perpendicular(segment.end, segment)
-    if line_value(slope_start, intercept_start, node) * line_value(slope_end, intercept_end, node) < 0:
-        distance = abs(line_value(segment.slope, segment.intercept, node) / sqrt(segment.slope ^ 2 + 1))
+    A_start, B_start, C_start = perpendicular(segment.start, segment)
+    A_end, B_end, C_end = perpendicular(segment.end, segment)
+    if line_value(A_start, B_start, C_start, node) * line_value(A_end, B_end, C_end, node) < 0:
+        distance = abs(line_value(segment.A, segment.B, segment.C, node) / sqrt(segment.A ** 2 + segment.B**2))
     else:
         distance = min(dist(node, segment.start), dist(node, segment.end))
     return distance
 
 
-def line_value(slope, intercept, node):
+def line_value(A, B, C,node):
     # determine if a node is on which side of line
-    result = slope * node.x + intercept - node.y
+    result = A * node.x + B * node.y+C
     return result
 
 
 def perpendicular(node, segment):
     # this function return a line that perpendicular to segment and pass the node
-    #TODO need convert kx+b=y to ax+by+c=0 for all line, segment
-    if segment.slope==0:
-        slope=float("inf")
-        intercept=float("-inf")
+    # need convert kx+b=y to ax+by+c=0 for all line, segment. done 202103292131
+    if segment.A == 0:
+        A = 1
+        B = 0
+        C = -node.x
+    elif segment.B==0:
+        A = 0
+        B = 1
+        C = -node.y
     else:
-        slope = -1 / segment.slope
-        intercept = node.y - slope * node.x
-    return slope, intercept
+        A = -segment.B / segment.A
+        B = 1
+        C = -A*node.x-node.y
+    return A, B, C

@@ -1,7 +1,8 @@
 from geometry import Node, Edge, Vertex, Polygon, intersect
 from distance import distance_node_to_segment
 from math import atan2, pi, cos, sin
-
+from Plot import plot_Edge, plot_Polygon, plot_Node
+import matplotlib.pyplot as plt
 
 class Visibility_Map:
     def __init__(self, start, goal, obstacle):
@@ -19,10 +20,12 @@ class Visibility_Map:
         self.get_graph_edge(self.goal, self.vertices)
         vertices = self.vertices
         for obstacle in self.obstacles:
-            self.visibility_graph.append(obstacle.edge)
-            vertices.remove(obstacle.vertices)
+            for edge in obstacle.edge:
+                self.visibility_graph.append(edge)
             for vertex in obstacle.vertices:
-                self.get_graph_edge(vertex, vertices)
+                vertices.remove(vertex)
+            for vertex in obstacle.vertices:
+                self.get_graph_edge(vertex.node, vertices)
 
     def get_graph_edge(self, node, vertices):
         # rotational plane sweep algorithm
@@ -30,19 +33,25 @@ class Visibility_Map:
         # sorted edges list that intersect horizontal half-line emanating from node
         edge_list = []  # edge list of vertices, should be all edges of obstacle
         for vertex in vertices:
-            if vertex.edge is not None:
+            if vertex.edge is not None and vertex.edge not in edge_list:
                 edge_list.append(vertex.edge)
-        active_list = self.get_active_list(node, pi/4, edge_list)
+        active_list = self.get_active_list(node, 0, edge_list)
         for item in vertex_list:
-            angle=item[1]
-            vertex=item[0]
+            angle = item[1]
+            vertex = item[0]
             if self.visible(node, vertex.node, self.obstacles):
-                self.visibility_graph.append(Edge(node, angle, vertex))
-            if vertex.edge_position == "start" and vertex.edge not in active_list.key:
-                active_list[vertex.edge] = distance_node_to_segment(node, vertex.edge)
-                active_list = sorted(active_list.items(), key=lambda x: x[1], reverse=False)
-            if vertex.edge_position == "end" and vertex.edge in active_list.key:
-                active_list.pop(vertex.edge)
+                self.visibility_graph.append(Edge(node, vertex.node))
+            if vertex.edge_position == "start":
+                distance = distance_node_to_segment(node,vertex.edge)
+                temp = (vertex.edge,distance)
+                if temp not in active_list:
+                    active_list.append(temp)
+                    active_list.sort(key=lambda x: x[1], reverse=False)
+            if vertex.edge_position == "end":
+                distance = distance_node_to_segment(node, vertex.edge)
+                temp = (vertex.edge, distance)
+                if temp in active_list:
+                    active_list.remove(temp)
 
     def get_vertices(self):
         for obstacle in self.obstacles:
@@ -56,7 +65,8 @@ class Visibility_Map:
                 if edge not in self.edges:
                     self.edges.append(edge)
 
-    def get_vertex_list(self,node, vertices):
+    @staticmethod
+    def get_vertex_list(node, vertices):
         # this function return angle between node and vertices
         vertex_list = {}
         for vertex in vertices:
@@ -67,6 +77,7 @@ class Visibility_Map:
                 angle = angle + 2 * pi
             vertex_list[vertex] = angle
         vertex_list1 = sorted(vertex_list.items(), key=lambda x: x[1], reverse=False)
+        # vertex_list1 is a list, not dictionary
         return vertex_list1
 
     @staticmethod
@@ -81,6 +92,7 @@ class Visibility_Map:
             if intersect(edge, Edge(node, end)):
                 active_list[edge] = distance_node_to_segment(node, edge)
         active_list = sorted(active_list.items(), key=lambda x: x[1], reverse=False)
+        # active_list is list, not dictionary
         return active_list
 
     @staticmethod
@@ -92,3 +104,13 @@ class Visibility_Map:
                 if intersect(line, edge):
                     return False
         return True
+
+    def plot(self):
+        fig = plt.figure
+        plot_Node(self.start)
+        plot_Node(self.goal)
+        for obstacle in self.obstacles:
+            plot_Polygon(obstacle)
+        for edge in self.visibility_graph:
+            plot_Edge(edge)
+        plt.show()

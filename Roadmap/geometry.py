@@ -23,7 +23,7 @@ def intersect(edge1, edge2):
         CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
         CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
         CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
-        if cross_product(CA, CD) * cross_product(CB, CD) <= 0:
+        if cross_product(CA, CD) * cross_product(CB, CD) < 0:
             return True
         else:
             return False
@@ -45,6 +45,9 @@ class Vertex:
         self.edge = edge
         self.check_position(node, edge)
 
+    def __str__(self):
+        return "x:" + str(self.node.x) + ",y:" + str(self.node.y)+",position:"+str(self.edge_position)
+
     def check_position(self, node, edge):
         if node == edge.start:
             self.edge_position = "start"
@@ -59,20 +62,25 @@ class Edge:
         self.start = start
         self.end = end
         self.length = dist(start, end)
-        self.slope = 0
-        self.intercept = 0
+        # line function: Ax+By+C=0
+        self.A = 0
+        self.B = 0
+        self.C = 0
         self.calculate()
 
     def calculate(self):
         if self.start.x == self.end.x:
-            self.slope = float("inf")
-            self.intercept = float("-inf")
+            self.A = 1
+            self.B = 0
+            self.C = -self.start.x
         elif self.start.y == self.end.y:
-            self.slope = 0
-            self.intercept = self.start.y
+            self.A = 0
+            self.B = 1
+            self.C = -self.start.y
         else:
-            self.slope = (self.start.y - self.end.y) / (self.start.x - self.end.x)
-            self.intercept = self.start.y - self.slope * self.start.x
+            self.A = -(self.start.y - self.end.y) / (self.start.x - self.end.x)
+            self.B = 1
+            self.C = -self.A*self.start.x-self.B*self.start.y
 
 
 class Polygon:
