@@ -1,4 +1,5 @@
 from distance import dist
+import numpy as np
 
 
 def cross_product(list1, list2):
@@ -29,6 +30,20 @@ def intersect(edge1, edge2):
             return False
 
 
+def intersection(edge1, edge2):
+    """
+    this function return intersection node of two edges
+    input type: two edges
+    output type: a node
+    """
+    if intersect(edge1, edge2):
+        a = np.array([edge1.A, edge1.B], [edge2.A, edge2.B])
+        b = np.array([-edge1.C], [-edge2.C])
+        result = np.linalg.solve(a, b)
+        result = Node(result[0], result[1])
+        return result
+
+
 class Node:
     def __init__(self, x, y):
         self.x = x
@@ -46,7 +61,7 @@ class Vertex:
         self.check_position(node, edge)
 
     def __str__(self):
-        return "x:" + str(self.node.x) + ",y:" + str(self.node.y)+",position:"+str(self.edge_position)
+        return "x:" + str(self.node.x) + ",y:" + str(self.node.y) + ",position:" + str(self.edge_position)
 
     def check_position(self, node, edge):
         if node == edge.start:
@@ -80,7 +95,7 @@ class Edge:
         else:
             self.A = -(self.start.y - self.end.y) / (self.start.x - self.end.x)
             self.B = 1
-            self.C = -self.A*self.start.x-self.B*self.start.y
+            self.C = -self.A * self.start.x - self.B * self.start.y
 
 
 class Polygon:
