@@ -54,22 +54,27 @@ class Node:
 
 
 class Vertex:
-    def __init__(self, node, edge=None):
+    def __init__(self, node, edge_list=None):
         self.node = node
-        self.edge_position = None
-        self.edge = edge
-        self.check_position(node, edge)
+        self.edge_position = {}
+        self.edge_list = edge_list
+        self.check_position(node, edge_list)
 
     def __str__(self):
         return "x:" + str(self.node.x) + ",y:" + str(self.node.y) + ",position:" + str(self.edge_position)
 
-    def check_position(self, node, edge):
-        if node == edge.start:
-            self.edge_position = "start"
-        elif node == edge.end:
-            self.edge_position = "end"
+    def __gt__(self, other):
+        if self.node.x != other.node.x:
+            return self.node.x > other.node.x
         else:
-            self.edge_position = None
+            return self.node.y > other.node.y
+
+    def check_position(self, node, edge_list):
+        for edge in edge_list:
+            if node == edge.start:
+                self.edge_position[edge] = "start"
+            else:
+                self.edge_position[edge] = "end"
 
 
 class Edge:
@@ -105,8 +110,16 @@ class Polygon:
         self.get_vertices()
 
     def get_vertices(self):
+        dict = {}
         for edge in self.edge:
-            if Vertex(edge.start, edge) not in self.vertices:
-                self.vertices.append(Vertex(edge.start, edge))
-            if Vertex(edge.end, edge) not in self.vertices:
-                self.vertices.append(Vertex(edge.end, edge))
+            dict[edge.start]=[]
+            dict[edge.end]=[]
+        for edge in self.edge:
+            dict[edge.start].append(edge)
+            dict[edge.end].append(edge)
+            # if Vertex(edge.start, edge) not in self.vertices:
+            #     self.vertices.append(Vertex(edge.start, edge))
+            # if Vertex(edge.end, edge) not in self.vertices:
+            #     self.vertices.append(Vertex(edge.end, edge))
+        for key,value in dict.items():
+            self.vertices.append(Vertex(key,value))
