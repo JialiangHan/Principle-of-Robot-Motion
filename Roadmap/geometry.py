@@ -112,8 +112,8 @@ class Polygon:
     def get_vertices(self):
         dict = {}
         for edge in self.edge:
-            dict[edge.start]=[]
-            dict[edge.end]=[]
+            dict[edge.start] = []
+            dict[edge.end] = []
         for edge in self.edge:
             dict[edge.start].append(edge)
             dict[edge.end].append(edge)
@@ -121,5 +121,24 @@ class Polygon:
             #     self.vertices.append(Vertex(edge.start, edge))
             # if Vertex(edge.end, edge) not in self.vertices:
             #     self.vertices.append(Vertex(edge.end, edge))
-        for key,value in dict.items():
-            self.vertices.append(Vertex(key,value))
+        for key, value in dict.items():
+            self.vertices.append(Vertex(key, value))
+
+
+def determine_edge_location(vertex, edge):
+    """
+    output is left,right,upper, down, location of an edge compared to vertex
+    """
+    result = []
+    list_node = [edge.start, edge.end]
+    for i in range(len(list_node)):
+        if vertex.node == list_node[i]:
+            if vertex.node.x > list_node[1 - i].x:
+                result.append("left")
+            else:
+                result.append("right")
+            if vertex.node.y > list_node[1 - i].y:
+                result.append("upper")
+            else:
+                result.append("down")
+    return result

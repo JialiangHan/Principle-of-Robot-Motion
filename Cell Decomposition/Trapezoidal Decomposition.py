@@ -1,11 +1,12 @@
 """
 this file is a trapezoidal decomposition of a map
 """
-from geometry import intersection, Polygon, Node, Edge
+from geometry import intersection, Polygon, Node, Edge, determine_edge_location
 import heapq
 import random
 from Plot import plot_Edge, plot_Polygon
 import matplotlib.pyplot as plt
+from bintrees import AVLTree
 
 
 class Trapezoidal_Decomposition:
@@ -14,11 +15,83 @@ class Trapezoidal_Decomposition:
         self.obstacle = obstacle
         self.vertices = []
         self.get_vertices()
-        self.edge_list = []
+        self.current_edge_list = AVLTree()
         self.vertical_extension = []
 
     def run(self):
-        current_vertex = heapq.heappop(self.vertices)
+        while self.vertices:
+            current_vertex = heapq.heappop(self.vertices)
+            self.process_event(current_vertex)
+
+    def process_event(self, current_vertex):
+        """
+        this function determine event type for current_vertex
+        and maintain current edge list
+        """
+        position = {}
+        # end node is a selected node far away on sweep line
+        end_up_node = Node(current_vertex.node.x, 1000)
+        end_down_node = Node(current_vertex.node.x, -1000)
+        sweepline = Edge(end_up_node, end_down_node)
+        for edge in current_vertex.edge_list:
+            position[edge] = determine_edge_location(current_vertex, edge)
+            if position[edge][1] == "upper":
+                E_upper = edge
+            else:
+                E_lower = edge
+        # Todo AVL tree is somehow is empty, need to fix
+        if position[E_upper] == "right" and position[E_lower] == "right":
+            # insert E_upper and E_lower into current_edge
+            self.current_edge_list.insert(E_upper)
+            self.current_edge_list.insert(E_lower)
+            prev = self.getPred(E_lower)
+            succ=self.getSucc(E_upper)
+            inter1 = intersection(prev, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter1))
+            inter2 = intersection(succ, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter2))
+        elif position[E_upper] == "right" and position[E_lower] == "left":
+            # delete E_lower and insert E_upper
+            prev = self.getPred(E_lower)
+            self.current_edge_list.remove(E_lower)
+            self.current_edge_list.insert(E_upper)
+            succ=self.getSucc(E_upper)
+            inter1 = intersection(prev, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter1))
+            inter2 = intersection(succ, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter2))
+        elif position[E_upper] == "left" and position[E_lower] == "right":
+            # delete E_upper and insert E_lower
+            succ=self.getSucc(E_upper)
+            self.current_edge_list.remove(E_upper)
+            self.current_edge_list.insert(E_lower)
+            prev = self.getPred(E_lower)
+            inter1 = intersection(prev, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter1))
+            inter2 = intersection(succ, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter2))
+        else:
+            # delete E_upper and E_lower
+            succ=self.getSucc(E_upper)
+            prev = self.getPred(E_lower)
+            self.current_edge_list.remove(E_upper)
+            self.current_edge_list.remove(E_lower)
+            inter1 = intersection(prev, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter1))
+            inter2 = intersection(succ, sweepline)
+            self.vertical_extension.append(Edge(current_vertex.node, inter2))
+
+    def getPred(self, edge:Edge):
+        try:
+            return self.current_edge_list.prev_key(edge)
+        except KeyError:
+            return None
+
+    def getSucc(self, edge: Edge):
+        try:
+            return self.current_edge_list.succ_key(edge)
+        except KeyError:
+            return None
 
     def plot(self):
         for edge in self.vertical_extension:
