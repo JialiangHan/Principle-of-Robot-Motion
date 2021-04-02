@@ -1,7 +1,7 @@
 """
 this file is a trapezoidal decomposition of a map
 """
-from geometry import intersection, Polygon, Node, Edge, left_or_right
+from geometry import intersection, Polygon, Node, Edge, left_or_right,edge_in_polygon,vertex_in_obstacle
 import heapq
 import random
 from Plot import plot_Edge, plot_Polygon
@@ -33,87 +33,72 @@ class Trapezoidal_Decomposition:
         end_up_node = Node(current_vertex.node.x, 1000)
         end_down_node = Node(current_vertex.node.x, -1000)
         sweepline = Edge(end_up_node, end_down_node)
+        obstacle = vertex_in_obstacle(current_vertex, self.obstacle)
         for i in range(len(current_vertex.edge_list)):
             # position[edge]= left or right
             position[current_vertex.edge_list[i]] = left_or_right(current_vertex, current_vertex.edge_list[i])
         # determine if upper or lower
-        if current_vertex.edge_list[0].start!=current_vertex.node:
-            if current_vertex.edge_list[1].start!=current_vertex.node:
-                if current_vertex.edge_list[0].start.y>current_vertex.edge_list[1].start.y:
-                    E_upper= current_vertex.edge_list[0]
-                    E_lower=current_vertex.edge_list[1]
+        if current_vertex.edge_list[0].start != current_vertex.node:
+            if current_vertex.edge_list[1].start != current_vertex.node:
+                if current_vertex.edge_list[0].start.y > current_vertex.edge_list[1].start.y:
+                    E_upper = current_vertex.edge_list[0]
+                    E_lower = current_vertex.edge_list[1]
                 else:
-                    E_upper=current_vertex.edge_list[1]
-                    E_lower=current_vertex.edge_list[0]
+                    E_upper = current_vertex.edge_list[1]
+                    E_lower = current_vertex.edge_list[0]
             else:
-                if current_vertex.edge_list[0].start.y>current_vertex.edge_list[1].end.y:
-                    E_upper= current_vertex.edge_list[0]
-                    E_lower=current_vertex.edge_list[1]
+                if current_vertex.edge_list[0].start.y > current_vertex.edge_list[1].end.y:
+                    E_upper = current_vertex.edge_list[0]
+                    E_lower = current_vertex.edge_list[1]
                 else:
-                    E_upper=current_vertex.edge_list[1]
-                    E_lower=current_vertex.edge_list[0]
+                    E_upper = current_vertex.edge_list[1]
+                    E_lower = current_vertex.edge_list[0]
         else:
-            if current_vertex.edge_list[1].start!=current_vertex.node:
-                if current_vertex.edge_list[0].end.y>current_vertex.edge_list[1].start.y:
-                    E_upper= current_vertex.edge_list[0]
-                    E_lower=current_vertex.edge_list[1]
+            if current_vertex.edge_list[1].start != current_vertex.node:
+                if current_vertex.edge_list[0].end.y > current_vertex.edge_list[1].start.y:
+                    E_upper = current_vertex.edge_list[0]
+                    E_lower = current_vertex.edge_list[1]
                 else:
-                    E_upper=current_vertex.edge_list[1]
-                    E_lower=current_vertex.edge_list[0]
+                    E_upper = current_vertex.edge_list[1]
+                    E_lower = current_vertex.edge_list[0]
             else:
-                if current_vertex.edge_list[0].end.y>current_vertex.edge_list[1].end.y:
-                    E_upper= current_vertex.edge_list[0]
-                    E_lower=current_vertex.edge_list[1]
+                if current_vertex.edge_list[0].end.y > current_vertex.edge_list[1].end.y:
+                    E_upper = current_vertex.edge_list[0]
+                    E_lower = current_vertex.edge_list[1]
                 else:
-                    E_upper=current_vertex.edge_list[1]
-                    E_lower=current_vertex.edge_list[0]
+                    E_upper = current_vertex.edge_list[1]
+                    E_lower = current_vertex.edge_list[0]
 
         if position[E_upper][0] == "right" and position[E_lower][0] == "right":
             # insert E_upper and E_lower into current_edge
-            self.current_edge_list.insert(E_upper,E_upper)
-            self.current_edge_list.insert(E_lower,E_lower)
+            self.current_edge_list.insert(E_upper, E_upper)
+            self.current_edge_list.insert(E_lower, E_lower)
             prev = self.getPred(E_lower)
             succ = self.getSucc(E_upper)
-            if prev is not None:
-                inter1 = intersection(prev, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter1))
-            if succ is not None:
-                inter2 = intersection(succ, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter2))
         elif position[E_upper][0] == "right" and position[E_lower][0] == "left":
             # delete E_lower and insert E_upper
             prev = self.getPred(E_lower)
             self.current_edge_list.remove(E_lower)
-            self.current_edge_list.insert(E_upper,E_upper)
+            self.current_edge_list.insert(E_upper, E_upper)
             succ = self.getSucc(E_upper)
-            if prev is not None:
-                inter1 = intersection(prev, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter1))
-            if succ is not None:
-                inter2 = intersection(succ, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter2))
         elif position[E_upper][0] == "left" and position[E_lower][0] == "right":
             # delete E_upper and insert E_lower
             succ = self.getSucc(E_upper)
             self.current_edge_list.remove(E_upper)
-            self.current_edge_list.insert(E_lower,E_lower)
+            self.current_edge_list.insert(E_lower, E_lower)
             prev = self.getPred(E_lower)
-            if prev is not None:
-                inter1 = intersection(prev, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter1))
-            if succ is not None:
-                inter2 = intersection(succ, sweepline)
-                self.vertical_extension.append(Edge(current_vertex.node, inter2))
         else:
             # delete E_upper and E_lower
             succ = self.getSucc(E_upper)
             prev = self.getPred(E_lower)
             self.current_edge_list.remove(E_upper)
             self.current_edge_list.remove(E_lower)
-            if prev is not None:
+        if prev is not None:
+            if not edge_in_polygon(prev, obstacle):
                 inter1 = intersection(prev, sweepline)
                 self.vertical_extension.append(Edge(current_vertex.node, inter1))
-            if succ is not None:
+        if succ is not None:
+            if not edge_in_polygon(succ, obstacle):
                 inter2 = intersection(succ, sweepline)
                 self.vertical_extension.append(Edge(current_vertex.node, inter2))
 
@@ -174,7 +159,7 @@ for i in range(m):
 # generate boundary
 delta1 = delta_x
 delta2 = 1
-node_list = [Node(1, 30), Node(20, 0),  Node(40, 2), Node(55, 40),Node(30, 50)]
+node_list = [Node(1, 30), Node(20, 0), Node(40, 2), Node(55, 40), Node(30, 50)]
 for k in range(len(node_list)):
     if k + 1 < len(node_list):
         edge_list.append(Edge(node_list[k], node_list[k + 1]))

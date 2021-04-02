@@ -78,7 +78,7 @@ class Vertex:
 
 
 class Edge:
-    def __init__(self, start:Node, end:Node):
+    def __init__(self, start: Node, end: Node):
         # we want to make sure p is always the left startoint
         if start.x < end.x:
             self.start = start
@@ -114,7 +114,7 @@ class Edge:
             self.B = 1
             self.C = -self.A * self.start.x - self.B * self.start.y
 
-    def aboveLine(self, node:Node) -> bool:
+    def aboveLine(self, node: Node) -> bool:
         """
         Return true if node lies above line segment 'self'.
         http://stackoverflow.com/enduestions/3838319/how-can-i-check-if-a-node-is-below-a-line-or-not
@@ -178,3 +178,20 @@ def left_or_right(vertex, edge):
             else:
                 result.append("right")
     return result
+
+
+def edge_in_polygon(edge: Edge, polygon: Polygon) -> bool:
+    if polygon is None:
+        return False
+    else:
+        if edge in polygon.edge:
+            return True
+        else:
+            return False
+
+
+def vertex_in_obstacle(vertex: Vertex, obstacle_list: list) -> Polygon:
+    for obstacle in obstacle_list:
+        if vertex in obstacle.vertices:
+            return obstacle
+    return None
