@@ -1,4 +1,4 @@
-from geometry import Node, Edge, Vertex, Polygon, intersect
+from geometry import Node, Edge, intersect
 from distance import distance_node_to_segment
 from math import atan2, pi, cos, sin
 from Plot import plot_Edge, plot_Polygon, plot_Node
