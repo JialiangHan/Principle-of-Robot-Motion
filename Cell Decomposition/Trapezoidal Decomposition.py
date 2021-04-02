@@ -135,7 +135,7 @@ MIN_Y = 0
 
 # random generate polygon
 n = 3  # number of vertex
-m = 1  # number of obstacles
+m = 2  # number of obstacles
 delta_x = (MAX_X - MIN_X) / m
 delta_y = (MAX_Y - MIN_Y) / m
 node_list = []
@@ -159,7 +159,7 @@ for i in range(m):
 # generate boundary
 delta1 = delta_x
 delta2 = 1
-node_list = [Node(1, 30), Node(20, 0), Node(40, 2), Node(55, 40), Node(30, 50)]
+node_list = [Node(1, 30), Node(10, 0), Node(40, 2), Node(55, 40), Node(30, 50),Node(5,45)]
 for k in range(len(node_list)):
     if k + 1 < len(node_list):
         edge_list.append(Edge(node_list[k], node_list[k + 1]))
