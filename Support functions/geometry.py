@@ -150,15 +150,15 @@ class Edge:
 class Polygon:
     def __init__(self, edge_list):
         self.vertices = []
-        self.edge = edge_list
+        self.edge_list = edge_list
         self.get_vertices()
 
     def get_vertices(self):
         dict = {}
-        for edge in self.edge:
+        for edge in self.edge_list:
             dict[edge.start] = []
             dict[edge.end] = []
-        for edge in self.edge:
+        for edge in self.edge_list:
             dict[edge.start].append(edge)
             dict[edge.end].append(edge)
         for key, value in dict.items():

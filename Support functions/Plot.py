@@ -11,9 +11,12 @@ def plot_Edge(edge):
     plt.plot([edge.start.x, edge.end.x], [edge.start.y, edge.end.y], "k")
 
 
-def plot_Polygon(polygon):
+def plot_Polygon(polygon,fill_or_not:bool):
     x, y = [], []
+    for edge in polygon.edge_list:
+        plot_Edge(edge)
     for vertex in polygon.vertices:
         x.append(vertex.node.x)
         y.append(vertex.node.y)
-    plt.fill(x, y, "b")
+    if fill_or_not is True:
+        plt.fill(x, y, "b")
