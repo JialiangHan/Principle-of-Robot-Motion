@@ -1,51 +1,10 @@
-from distance import dist
 import numpy as np
 
-
-def cross_product(list1, list2):
-    result = list1[0] * list2[1] - list1[1] * list2[0]
-    return result
-
-
-def intersect(edge1, edge2):
-    x_max_1 = max(edge1.start.x, edge1.end.x)
-    x_min_1 = min(edge1.start.x, edge1.end.x)
-    y_max_1 = max(edge1.start.y, edge1.end.y)
-    y_min_1 = min(edge1.start.y, edge1.end.y)
-    x_max_2 = max(edge2.start.x, edge2.end.x)
-    x_min_2 = min(edge2.start.x, edge2.end.x)
-    y_max_2 = max(edge2.start.y, edge2.end.y)
-    y_min_2 = min(edge2.start.y, edge2.end.y)
-    if x_max_2 < x_min_1 or y_max_2 < y_min_1:
-        return False
-    elif x_max_1 < x_min_2 or y_max_1 < y_min_2:
-        return False
-    else:
-        CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
-        CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
-        CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
-        if cross_product(CA, CD) * cross_product(CB, CD) < 0:
-            return True
-        else:
-            return False
-
-
-def intersection(edge1, edge2):
-    """
-    this function return intersection node of two edges
-    input type: two edges
-    output type: a node
-    """
-    if intersect(edge1, edge2):
-        a = np.array([[edge1.A, edge1.B], [edge2.A, edge2.B]])
-        b = np.array([[-edge1.C], [-edge2.C]])
-        result = np.linalg.solve(a, b)
-        result = Node(result[0], result[1])
-        return result
+from distance import dist
 
 
 class Node:
-    def __init__(self, x, y):
+    def __init__(self, x: int or float, y: int or float):
         self.x = x
         self.y = y
 
@@ -53,33 +12,9 @@ class Node:
         return "x: " + str(self.x)[:4] + ", y: " + str(self.y)[:4]
 
 
-class Vertex:
-    def __init__(self, node, edge_list=None):
-        self.node = node
-        self.edge_position = {}
-        self.edge_list = edge_list
-        self.check_position(node, edge_list)
-
-    def __str__(self):
-        return "x:" + str(self.node.x)[:4] + ",y:" + str(self.node.y)[:4] + ",position:" + str(self.edge_position)
-
-    def __gt__(self, other):
-        if self.node.x != other.node.x:
-            return self.node.x > other.node.x
-        else:
-            return self.node.y > other.node.y
-
-    def check_position(self, node, edge_list):
-        for edge in edge_list:
-            if node == edge.start:
-                self.edge_position[edge] = "start"
-            else:
-                self.edge_position[edge] = "end"
-
-
 class Edge:
     def __init__(self, start: Node, end: Node):
-        # we want to make sure p is always the left startoint
+        # we want to make sure p is always the left start point
         if start.x < end.x:
             self.start = start
             self.end = end
@@ -147,25 +82,91 @@ class Edge:
         return '<Segment start:%s end:%s>' % (self.start.__str__(), self.end.__str__())
 
 
+class Vertex:
+    def __init__(self, node: Node, edge_list=None):
+        self.node = node
+        self.edge_position = {}
+        self.edge_list = edge_list
+        self.check_position(node, edge_list)
+
+    def __str__(self):
+        return "x:" + str(self.node.x)[:4] + ",y:" + str(self.node.y)[:4] + ",position:" + str(self.edge_position)
+
+    def __gt__(self, other):
+        if self.node.x != other.node.x:
+            return self.node.x > other.node.x
+        else:
+            return self.node.y > other.node.y
+
+    def check_position(self, node: Node, edge_list: list[Edge]):
+        for edge in edge_list:
+            if node == edge.start:
+                self.edge_position[edge] = "start"
+            else:
+                self.edge_position[edge] = "end"
+
+
 class Polygon:
-    def __init__(self, edge_list):
+    def __init__(self, edge_list: list):
         self.vertices = []
         self.edge_list = edge_list
         self.get_vertices()
 
     def get_vertices(self):
-        dict = {}
+        Temp = {}
         for edge in self.edge_list:
-            dict[edge.start] = []
-            dict[edge.end] = []
+            Temp[edge.start] = []
+            Temp[edge.end] = []
         for edge in self.edge_list:
-            dict[edge.start].append(edge)
-            dict[edge.end].append(edge)
-        for key, value in dict.items():
+            Temp[edge.start].append(edge)
+            Temp[edge.end].append(edge)
+        for key, value in Temp.items():
             self.vertices.append(Vertex(key, value))
 
 
-def left_or_right(vertex, edge):
+def cross_product(list1: list, list2: list) -> int:
+    result = list1[0] * list2[1] - list1[1] * list2[0]
+    return result
+
+
+def intersect(edge1: Edge, edge2: Edge) -> bool:
+    x_max_1 = max(edge1.start.x, edge1.end.x)
+    x_min_1 = min(edge1.start.x, edge1.end.x)
+    y_max_1 = max(edge1.start.y, edge1.end.y)
+    y_min_1 = min(edge1.start.y, edge1.end.y)
+    x_max_2 = max(edge2.start.x, edge2.end.x)
+    x_min_2 = min(edge2.start.x, edge2.end.x)
+    y_max_2 = max(edge2.start.y, edge2.end.y)
+    y_min_2 = min(edge2.start.y, edge2.end.y)
+    if x_max_2 < x_min_1 or y_max_2 < y_min_1:
+        return False
+    elif x_max_1 < x_min_2 or y_max_1 < y_min_2:
+        return False
+    else:
+        CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
+        CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
+        CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
+        if cross_product(CA, CD) * cross_product(CB, CD) < 0:
+            return True
+        else:
+            return False
+
+
+def intersection(edge1: Edge, edge2: Edge) -> Node:
+    """
+    this function return intersection node of two edges
+    input type: two edges
+    output type: a node
+    """
+    if intersect(edge1, edge2):
+        a = np.array([[edge1.A, edge1.B], [edge2.A, edge2.B]])
+        b = np.array([[-edge1.C], [-edge2.C]])
+        result = np.linalg.solve(a, b)
+        result = Node(result[0], result[1])
+        return result
+
+
+def left_or_right(vertex: Vertex, edge: Edge) -> list[str]:
     """
     output is left,right, location of an edge compared to vertex
     """
@@ -184,13 +185,28 @@ def edge_in_polygon(edge: Edge, polygon: Polygon) -> bool:
     if polygon is None:
         return False
     else:
-        if edge in polygon.edge:
+        if edge in polygon.edge_list:
             return True
         else:
             return False
 
 
-def vertex_in_obstacle(vertex: Vertex, obstacle_list: list) -> Polygon:
+def node_in_polygon(node: Node, polygon: Polygon) -> bool:
+    """
+    this function determine if a node is inside or on the boundary of a polygon
+    :param node:
+    :param polygon:
+    :return:
+    """
+
+
+def vertex_in_obstacle(vertex: Vertex, obstacle_list: list) -> Polygon or None:
+    """
+    this function determine if vertex is in obstacle.vertices
+    :param vertex:
+    :param obstacle_list:
+    :return:
+    """
     for obstacle in obstacle_list:
         if vertex in obstacle.vertices:
             return obstacle
