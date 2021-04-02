@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Roadmap/Computational_Geometry.py" afterDir="false" />
+    <list default="true" id="f6cff881-8868-43f6-8bcd-27e53e4961ad" name="Default Changelist" comment="all bugs fixed, now it should work">
+      <change afterPath="$PROJECT_DIR$/Support functions/Map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Principle-of-Robot-Motion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Principle-of-Robot-Motion.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/Roadmap/Path Planning using Visibility Graph.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="hiddenUrls">
@@ -35,7 +36,10 @@
     <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1qCrg7Pi5klEGnzo25ExY1tbFBq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -44,11 +48,16 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled2/ARA.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.Computational_Geometry">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\d\HJL\个人\培训\汽车\自动驾驶\Coding\Principle-of-Robot-Motion\Support functions" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Trapezoidal Decomposition">
     <configuration name="Computational_Geometry" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Principle-of-Robot-Motion" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -61,7 +70,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Roadmap/Computational_Geometry.py" />
+      <option name="SCRIPT_NAME" value="C:\d\HJL\个人\培训\汽车\自动驾驶\Coding\Principle-of-Robot-Motion\Support functions\Computational_Geometry.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -112,15 +121,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Trapezoidal Decomposition" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Principle-of-Robot-Motion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Cell Decomposition" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Cell Decomposition/Trapezoidal Decomposition.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Roadmap" />
-      <item itemvalue="Python.Path Planning using Visibility Graph" />
       <item itemvalue="Python.Computational_Geometry" />
+      <item itemvalue="Python.Path Planning using Visibility Graph" />
+      <item itemvalue="Python.Trapezoidal Decomposition" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Computational_Geometry" />
+        <item itemvalue="Python.Trapezoidal Decomposition" />
         <item itemvalue="Python.Path Planning using Visibility Graph" />
+        <item itemvalue="Python.Computational_Geometry" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +201,56 @@
       <option name="project" value="LOCAL" />
       <updated>1617072264913</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add convex hull">
+      <created>1617093726493</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617093726493</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add intersection function: find intersection point of two edges">
+      <created>1617180387400</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617180387400</updated>
+    </task>
+    <task id="LOCAL-00006" summary="create Trapezoidal Decomposition.py.">
+      <created>1617180431241</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617180431241</updated>
+    </task>
+    <task id="LOCAL-00007" summary="AVL tree added to Trapezoidal Decomposition.py, bugs remains.">
+      <created>1617266835571</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617266835571</updated>
+    </task>
+    <task id="LOCAL-00008" summary="all bugs fixed, now it should work">
+      <created>1617334343999</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617334343999</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add two obstacles">
+      <created>1617334689346</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1617334689346</updated>
+    </task>
+    <task id="LOCAL-00010" summary="file structure changed&#10;add PRM">
+      <created>1617352160502</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617352160502</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,41 +270,76 @@
     <MESSAGE value="change line function from kx+b=y to Ax+By+C=0" />
     <MESSAGE value="update:&#10;add a py file for distance.py" />
     <MESSAGE value="all bugs fixed, next is to add planning algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="all bugs fixed, next is to add planning algorithm" />
+    <MESSAGE value="add convex hull" />
+    <MESSAGE value="add intersection function: find intersection point of two edges" />
+    <MESSAGE value="create Trapezoidal Decomposition.py." />
+    <MESSAGE value="AVL tree added to Trapezoidal Decomposition.py, bugs remains." />
+    <MESSAGE value="all bugs fixed, now it should work" />
+    <MESSAGE value="add two obstacles" />
+    <MESSAGE value="file structure changed&#10;add PRM" />
+    <option name="LAST_COMMIT_MESSAGE" value="file structure changed&#10;add PRM" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617067894787">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067894787" />
-    <state x="2482" y="103" key="CommitChangelistDialog2" timestamp="1617072263675">
+    <state x="2652" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617349431240">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2482" y="103" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617072263675" />
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1617073876828">
+    <state x="2652" y="322" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617349431240" />
+    <state x="2708" y="234" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1617327142012">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617073876828" />
+    <state x="2708" y="234" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617327142012" />
+    <state x="2757" y="222" key="#xdebugger.evaluate" timestamp="1617265596924">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2757" y="222" key="#xdebugger.evaluate/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617265596924" />
+    <state x="2482" y="103" key="CommitChangelistDialog2" timestamp="1617352158729">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2482" y="103" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617352158729" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1617155001671">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617155001671" />
     <state x="2660" y="260" key="FileChooserDialogImpl" timestamp="1617067591017">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="260" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067591017" />
-    <state width="949" height="274" key="GridCell.Tab.0.bottom" timestamp="1617076039686">
+    <state width="1899" height="345" key="GridCell.Tab.0.bottom" timestamp="1617334705929">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039686" />
-    <state width="949" height="274" key="GridCell.Tab.0.center" timestamp="1617076039685">
+    <state width="1899" height="345" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.0.center" timestamp="1617334705929">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039685" />
-    <state width="949" height="274" key="GridCell.Tab.0.left" timestamp="1617076039685">
+    <state width="1899" height="345" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.0.left" timestamp="1617334705929">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039685" />
-    <state width="949" height="274" key="GridCell.Tab.0.right" timestamp="1617076039686">
+    <state width="1899" height="345" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.0.right" timestamp="1617334705929">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="949" height="274" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617076039686" />
+    <state width="1899" height="345" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.1.bottom" timestamp="1617334705930">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="345" key="GridCell.Tab.1.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705930" />
+    <state width="1899" height="345" key="GridCell.Tab.1.center" timestamp="1617334705929">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="345" key="GridCell.Tab.1.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.1.left" timestamp="1617334705929">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="345" key="GridCell.Tab.1.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
+    <state width="1899" height="345" key="GridCell.Tab.1.right" timestamp="1617334705929">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="345" key="GridCell.Tab.1.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617334705929" />
     <state x="2006" y="0" key="MergeDialog" timestamp="1617067420501">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -232,28 +348,37 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2494" y="129" key="MultipleFileMergeDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067420508" />
-    <state x="2381" y="161" key="SettingsEditor" timestamp="1617067703435">
+    <state x="2311" y="249" key="SettingsEditor" timestamp="1617352100428">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2381" y="161" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067703435" />
-    <state x="2575" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1617067287474">
+    <state x="2311" y="249" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617352100428" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1617353337912">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2575" y="342" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617067287474" />
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617073771998">
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617353337912" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1617331663885">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617073771998" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617331663885" />
+    <state x="2760" y="458" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1617326627002">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2760" y="458" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617326627002" />
+    <state x="2575" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1617349361791">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2575" y="342" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617349361791" />
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617326498776">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617326498776" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1617264923836">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1617264923836" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Roadmap/Plot.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -262,5 +387,12 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.current_edge_list" />
+        <watch expression="prev" />
+        <watch expression="succ" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
