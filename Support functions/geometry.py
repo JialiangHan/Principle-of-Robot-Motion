@@ -198,6 +198,29 @@ def node_in_polygon(node: Node, polygon: Polygon) -> bool:
     :param polygon:
     :return:
     """
+    polygon.vertices.sort(key=lambda x: x.x)
+    center_edge = Edge(polygon.vertices[0], polygon.vertices[-1])
+    upper_edge = []
+    lower_edge = []
+    for edge in polygon.edge_list:
+        if edge.belowOther(center_edge):
+            lower_edge.append(edge)
+        else:
+            upper_edge.append(edge)
+    for item in lower_edge:
+        if item.aboveLine(node):
+            temp = 1
+        else:
+            temp = 0
+    for item in upper_edge:
+        if not item.aboveLine(node):
+            temp = 1
+        else:
+            temp = 0
+    if temp == 1:
+        return True
+    else:
+        return False
 
 
 def vertex_in_obstacle(vertex: Vertex, obstacle_list: list) -> Polygon or None:
