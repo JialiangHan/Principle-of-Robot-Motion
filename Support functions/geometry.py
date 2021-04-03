@@ -181,6 +181,15 @@ def left_or_right(vertex: Vertex, edge: Edge) -> list[str]:
     return result
 
 
+def node_in_edge(node: Node, edge: Edge) -> list:
+    if node == edge.start:
+        return [True, edge.end]
+    elif node == edge.end:
+        return [True, edge.start]
+    else:
+        return [False, None]
+
+
 def edge_in_polygon(edge: Edge, polygon: Polygon) -> bool:
     if polygon is None:
         return False

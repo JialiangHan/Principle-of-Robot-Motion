@@ -15,6 +15,7 @@ class PRM:
         self.edges = []
         self.initial = initial
         self.goal = goal
+        self.neighbors = {}
 
     def Roadmap_construction(self):
         while len(self.vertices) < self.number_of_node:
@@ -47,11 +48,6 @@ class PRM:
                 break
             else:
                 node_nearest_goal = k_nearest_neighbor_goal.pop
-        path = shorted_path(self.initial, self.goal, prm)
-        if path:
-            return path
-        else:
-            return "failure"
 
     def sampling(self) -> geometry.Node:
         x = random.uniform(self.map.size[0], self.map.size[1])
@@ -63,6 +59,7 @@ class PRM:
         for node in self.vertices:
             distance_list[node] = distance.dist(node, vertex)
         k_nearest_neighbor = heapq.nsmallest(k, distance_list.items(), key=lambda x: x[1])
+        self.neighbors[vertex] = k_nearest_neighbor
         return k_nearest_neighbor
 
     def connect(self, node1: geometry.Node, node2: geometry.Node) -> bool:
