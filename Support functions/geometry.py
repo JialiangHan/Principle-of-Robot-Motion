@@ -84,40 +84,19 @@ def edge_in_polygon(edge: Edge.Edge, polygon: Polygon.Polygon) -> bool:
 
 def node_in_polygon(node: Node.Node, polygon: Polygon.Polygon) -> bool:
     """
+    射线法, 点在内部,则射线与多边形的交点为奇数
+    点在外部,交点数为偶数
     this function determine if a node is inside or on the boundary of a polygon
     :param node:
     :param polygon:
     :return:
     """
     # todo this function has issue, need rewrite
-    polygon.vertices.sort(key=lambda x: x.node.x)
-    center_edge = Edge.Edge(polygon.vertices[0].node, polygon.vertices[-1].node)
-    upper_edge = []
-    lower_edge = []
-    for edge in polygon.edge_list:
-        if not edge.cmp(center_edge):
-            if edge.belowOther(center_edge):
-                lower_edge.append(edge)
-            else:
-                upper_edge.append(edge)
-    if not upper_edge:
-        upper_edge.append(center_edge)
-    if not lower_edge:
-        lower_edge.append(center_edge)
-    for item in lower_edge:
-        if item.aboveLine(node):
-            temp = 1
-        else:
-            temp = 0
-    for item in upper_edge:
-        if not item.aboveLine(node):
-            temp = 1
-        else:
-            temp = 0
-    if temp == 1:
-        return True
-    else:
-        return False
+    # determine if node on polygon
+
+    # create 射线
+    line = Edge.Edge(node, Node.Node(10000, node.y))
+    count = 0
 
 
 def vertex_in_obstacle(vertex: Vertex.Vertex, obstacle_list: list) -> Polygon.Polygon or None:

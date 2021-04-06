@@ -39,6 +39,14 @@ class Edge:
             self.B = 1
             self.C = -self.A * self.start.x - self.B * self.start.y
 
+    def on_edge(self, node: Node.Node) -> bool:
+        if self.start.x < node.x < self.end.x:
+            if self.A * node.x + self.B * node.y + self.C == 0:
+                return True
+            else:
+                return False
+        return False
+
     def aboveLine(self, node: Node.Node) -> bool:
         """
         Return true if node lies above line segment 'self'.
