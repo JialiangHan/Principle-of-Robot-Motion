@@ -4,10 +4,12 @@
 # distance from node to polygon
 from math import sqrt
 
-from geometry import Node, Polygon, Edge
+import Edge
+import Node
+import Polygon
 
 
-def dist(a: Node, b: Node) -> float:
+def dist(a: Node.Node, b: Node.Node) -> float:
     # a, b are nodes from geometry
     # Euclidean distance
     delta_x = a.x - b.x
@@ -16,7 +18,7 @@ def dist(a: Node, b: Node) -> float:
     return distance
 
 
-def distance_node_to_polygon(node: Node, polygon: Polygon) -> float:
+def distance_node_to_polygon(node: Node.Node, polygon: Polygon.Polygon) -> float:
     # distance between node and polygon,
     # determine if edge of polygon are visible to node
     # then calculate distance
@@ -29,7 +31,7 @@ def distance_node_to_polygon(node: Node, polygon: Polygon) -> float:
     return distance
 
 
-def distance_node_to_segment(node: Node, segment: Edge) -> float:
+def distance_node_to_segment(node: Node.Node, segment: Edge.Edge) -> float:
     # distance between node and segment
     A_start, B_start, C_start = perpendicular(segment.start, segment)
     A_end, B_end, C_end = perpendicular(segment.end, segment)
@@ -40,13 +42,13 @@ def distance_node_to_segment(node: Node, segment: Edge) -> float:
     return distance
 
 
-def line_value(A: float, B: float, C: float, node: Node) -> float:
+def line_value(A: float, B: float, C: float, node: Node.Node) -> float:
     # determine if a node is on which side of line
     result = A * node.x + B * node.y + C
     return result
 
 
-def perpendicular(node: Node, segment: Edge) -> tuple:
+def perpendicular(node: Node.Node, segment: Edge.Edge) -> tuple:
     # this function return a line that perpendicular to segment and pass the node
     # need convert kx+b=y to ax+by+c=0 for all line, segment. done 202103292131
     if segment.A == 0:

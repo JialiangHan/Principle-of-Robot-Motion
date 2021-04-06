@@ -1,13 +1,18 @@
 import heapq
 import random
 
+import matplotlib.pyplot as plt
+
+import Edge
 import Map
+import Node
+import Plot
 import distance
 import geometry
 
 
 class PRM:
-    def __init__(self, map: Map, n: int, k: int, initial: geometry.Node, goal: geometry.Node):
+    def __init__(self, map: Map, n: int, k: int, initial: Node.Node, goal: Node.Node):
         self.map = map
         self.number_of_node = n
         self.number_of_neighbors = k
@@ -25,8 +30,8 @@ class PRM:
         for vertex in self.vertices:
             k_nearest_neighbor = self.get_k_nearest_neighbor(vertex, self.number_of_neighbors)
             for neighbor in k_nearest_neighbor:
-                if geometry.Edge(neighbor, vertex) not in self.edges and self.connect(neighbor, vertex):
-                    self.edges.append(geometry.Edge(neighbor, vertex))
+                if Edge.Edge(neighbor[0], vertex) not in self.edges and self.connect(neighbor[0], vertex):
+                    self.edges.append(Edge.Edge(neighbor[0], vertex))
 
     def solve_query(self):
         k_nearest_neighbor_initial = self.get_k_nearest_neighbor(self.initial, self.number_of_neighbors)
@@ -34,27 +39,27 @@ class PRM:
         self.vertices.append(self.initial)
         self.vertices.append(self.goal)
         # k_nearest_neighbor should be a heapq
-        node_nearest_initial = k_nearest_neighbor_initial.pop
+        node_nearest_initial = k_nearest_neighbor_initial.pop(0)
         while k_nearest_neighbor_initial:
-            if self.connect(self.initial, node_nearest_initial):
-                self.edges.append(geometry.Edge(self.initial, node_nearest_initial))
+            if self.connect(self.initial, node_nearest_initial[0]):
+                self.edges.append(Edge.Edge(self.initial, node_nearest_initial[0]))
                 break
             else:
-                node_nearest_initial = k_nearest_neighbor_initial.pop
-        node_nearest_goal = k_nearest_neighbor_goal.pop
+                node_nearest_initial = k_nearest_neighbor_initial.pop(0)
+        node_nearest_goal = k_nearest_neighbor_goal.pop(0)
         while k_nearest_neighbor_goal:
-            if self.connect(self.goal, node_nearest_goal):
-                self.edges.append(geometry.Edge(self.goal, node_nearest_goal))
+            if self.connect(self.goal, node_nearest_goal[0]):
+                self.edges.append(Edge.Edge(self.goal, node_nearest_goal[0]))
                 break
             else:
-                node_nearest_goal = k_nearest_neighbor_goal.pop
+                node_nearest_goal = k_nearest_neighbor_goal.pop(0)
 
-    def sampling(self) -> geometry.Node:
+    def sampling(self) -> Node.Node:
         x = random.uniform(self.map.size[0], self.map.size[1])
         y = random.uniform(self.map.size[2], self.map.size[3])
-        return geometry.Node(x, y)
+        return Node.Node(x, y)
 
-    def get_k_nearest_neighbor(self, vertex: geometry.Node, k: int) -> list[geometry.Node]:
+    def get_k_nearest_neighbor(self, vertex: Node.Node, k: int) -> list:
         distance_list = {}
         for node in self.vertices:
             distance_list[node] = distance.dist(node, vertex)
@@ -62,14 +67,14 @@ class PRM:
         self.neighbors[vertex] = k_nearest_neighbor
         return k_nearest_neighbor
 
-    def connect(self, node1: geometry.Node, node2: geometry.Node) -> bool:
-        edge = geometry.Edge(node1, node2)
+    def connect(self, node1: Node.Node, node2: Node.Node) -> bool:
+        edge = Edge.Edge(node1, node2)
         if self.edge_collision_check(edge):
             return True
         else:
             return False
 
-    def edge_collision_check(self, edge: geometry.Edge) -> bool:
+    def edge_collision_check(self, edge: Edge.Edge) -> bool:
         """
 
         :param edge:
@@ -82,8 +87,20 @@ class PRM:
                     return False
         return True
 
-    def check_collision(self, node: geometry.Node) -> bool:
+    def check_collision(self, node: Node.Node) -> bool:
+        """
+        false: collisoin
+        true: collision free
+        """
         for obstacle in self.map.obstacle_list:
             if geometry.node_in_polygon(node, obstacle):
                 return False
         return True
+
+    def Plot(self):
+        self.map.Plot()
+        Plot.plot_Node(self.initial)
+        Plot.plot_Node(self.goal)
+        for edge in self.edges:
+            Plot.plot_Edge(edge)
+        plt.show()

@@ -1,127 +1,9 @@
 import numpy as np
 
-from distance import dist
-
-
-class Node:
-    def __init__(self, x: int or float, y: int or float):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return "x: " + str(self.x)[:4] + ", y: " + str(self.y)[:4]
-
-
-class Edge:
-    def __init__(self, start: Node, end: Node):
-        # we want to make sure p is always the left start point
-        if start.x < end.x:
-            self.start = start
-            self.end = end
-        elif start.x > end.x:
-            self.start = end
-            self.end = start
-        else:
-            if start.y < end.y:
-                self.start = start
-                self.end = end
-            else:
-                self.start = end
-                self.end = start
-        self.length = dist(start, end)
-        # line function: Ax+By+C=0
-        self.A = 0
-        self.B = 0
-        self.C = 0
-        self.calculate()
-
-    def calculate(self):
-        if self.start.x == self.end.x:
-            self.A = 1
-            self.B = 0
-            self.C = -self.start.x
-        elif self.start.y == self.end.y:
-            self.A = 0
-            self.B = 1
-            self.C = -self.start.y
-        else:
-            self.A = -(self.start.y - self.end.y) / (self.start.x - self.end.x)
-            self.B = 1
-            self.C = -self.A * self.start.x - self.B * self.start.y
-
-    def aboveLine(self, node: Node) -> bool:
-        """
-        Return true if node lies above line segment 'self'.
-        http://stackoverflow.com/enduestions/3838319/how-can-i-check-if-a-node-is-below-a-line-or-not
-        :param node:
-        :return:
-        """
-        v1x = self.end.x - self.start.x  # Vector 1.x
-        v1y = self.end.y - self.start.y  # Vector 1.y
-        v2x = self.end.x - node.x  # Vector 2.x
-        v2y = self.end.y - node.y  # Vector 2.y
-        xp = v1x * v2y - v1y * v2x  # Cross product
-        # when its larger than zero, return false
-        # so we assume that if it lies on the line that it is "above"
-        if xp > 0:
-            return False
-        else:
-            return True
-
-    def belowOther(self, other) -> bool:
-        if self.aboveLine(other.start) and self.aboveLine(other.end):
-            return True
-        if not other.aboveLine(self.start) and not other.aboveLine(self.end):
-            return True
-        return False
-
-    def __gt__(self, other):
-        return not self.belowOther(other)
-
-    def __repr__(self):
-        return '<Segment start:%s end:%s>' % (self.start.__str__(), self.end.__str__())
-
-
-class Vertex:
-    def __init__(self, node: Node, edge_list=None):
-        self.node = node
-        self.edge_position = {}
-        self.edge_list = edge_list
-        self.check_position(node, edge_list)
-
-    def __str__(self):
-        return "x:" + str(self.node.x)[:4] + ",y:" + str(self.node.y)[:4] + ",position:" + str(self.edge_position)
-
-    def __gt__(self, other):
-        if self.node.x != other.node.x:
-            return self.node.x > other.node.x
-        else:
-            return self.node.y > other.node.y
-
-    def check_position(self, node: Node, edge_list: list[Edge]):
-        for edge in edge_list:
-            if node == edge.start:
-                self.edge_position[edge] = "start"
-            else:
-                self.edge_position[edge] = "end"
-
-
-class Polygon:
-    def __init__(self, edge_list: list):
-        self.vertices = []
-        self.edge_list = edge_list
-        self.get_vertices()
-
-    def get_vertices(self):
-        Temp = {}
-        for edge in self.edge_list:
-            Temp[edge.start] = []
-            Temp[edge.end] = []
-        for edge in self.edge_list:
-            Temp[edge.start].append(edge)
-            Temp[edge.end].append(edge)
-        for key, value in Temp.items():
-            self.vertices.append(Vertex(key, value))
+import Edge
+import Node
+import Polygon
+import Vertex
 
 
 def cross_product(list1: list, list2: list) -> int:
@@ -129,7 +11,7 @@ def cross_product(list1: list, list2: list) -> int:
     return result
 
 
-def intersect(edge1: Edge, edge2: Edge) -> bool:
+def intersect(edge1: Edge.Edge, edge2: Edge.Edge) -> bool:
     x_max_1 = max(edge1.start.x, edge1.end.x)
     x_min_1 = min(edge1.start.x, edge1.end.x)
     y_max_1 = max(edge1.start.y, edge1.end.y)
@@ -152,7 +34,7 @@ def intersect(edge1: Edge, edge2: Edge) -> bool:
             return False
 
 
-def intersection(edge1: Edge, edge2: Edge) -> Node:
+def intersection(edge1: Edge.Edge, edge2: Edge.Edge) -> Node.Node:
     """
     this function return intersection node of two edges
     input type: two edges
@@ -162,11 +44,11 @@ def intersection(edge1: Edge, edge2: Edge) -> Node:
         a = np.array([[edge1.A, edge1.B], [edge2.A, edge2.B]])
         b = np.array([[-edge1.C], [-edge2.C]])
         result = np.linalg.solve(a, b)
-        result = Node(result[0], result[1])
+        result = Node.Node(result[0], result[1])
         return result
 
 
-def left_or_right(vertex: Vertex, edge: Edge) -> list[str]:
+def left_or_right(vertex, edge):
     """
     output is left,right, location of an edge compared to vertex
     """
@@ -181,7 +63,7 @@ def left_or_right(vertex: Vertex, edge: Edge) -> list[str]:
     return result
 
 
-def node_in_edge(node: Node, edge: Edge) -> list:
+def node_in_edge(node: Node.Node, edge: Edge.Edge) -> list:
     if node == edge.start:
         return [True, edge.end]
     elif node == edge.end:
@@ -190,7 +72,7 @@ def node_in_edge(node: Node, edge: Edge) -> list:
         return [False, None]
 
 
-def edge_in_polygon(edge: Edge, polygon: Polygon) -> bool:
+def edge_in_polygon(edge: Edge.Edge, polygon: Polygon.Polygon) -> bool:
     if polygon is None:
         return False
     else:
@@ -200,22 +82,28 @@ def edge_in_polygon(edge: Edge, polygon: Polygon) -> bool:
             return False
 
 
-def node_in_polygon(node: Node, polygon: Polygon) -> bool:
+def node_in_polygon(node: Node.Node, polygon: Polygon.Polygon) -> bool:
     """
     this function determine if a node is inside or on the boundary of a polygon
     :param node:
     :param polygon:
     :return:
     """
-    polygon.vertices.sort(key=lambda x: x.x)
-    center_edge = Edge(polygon.vertices[0], polygon.vertices[-1])
+    # todo this function has issue, need rewrite
+    polygon.vertices.sort(key=lambda x: x.node.x)
+    center_edge = Edge.Edge(polygon.vertices[0].node, polygon.vertices[-1].node)
     upper_edge = []
     lower_edge = []
     for edge in polygon.edge_list:
-        if edge.belowOther(center_edge):
-            lower_edge.append(edge)
-        else:
-            upper_edge.append(edge)
+        if not edge.cmp(center_edge):
+            if edge.belowOther(center_edge):
+                lower_edge.append(edge)
+            else:
+                upper_edge.append(edge)
+    if not upper_edge:
+        upper_edge.append(center_edge)
+    if not lower_edge:
+        lower_edge.append(center_edge)
     for item in lower_edge:
         if item.aboveLine(node):
             temp = 1
@@ -232,7 +120,7 @@ def node_in_polygon(node: Node, polygon: Polygon) -> bool:
         return False
 
 
-def vertex_in_obstacle(vertex: Vertex, obstacle_list: list) -> Polygon or None:
+def vertex_in_obstacle(vertex: Vertex.Vertex, obstacle_list: list) -> Polygon.Polygon or None:
     """
     this function determine if vertex is in obstacle.vertices
     :param vertex:
