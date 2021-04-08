@@ -9,7 +9,7 @@ def plot_Node(node):
 
 def plot_Edge(edge):
     plt.plot([edge.start.x, edge.end.x], [edge.start.y, edge.end.y], "k")
-
+    plt.show()
 
 def plot_Polygon(polygon,fill_or_not:bool):
     x, y = [], []

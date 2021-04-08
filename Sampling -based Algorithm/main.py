@@ -1,3 +1,4 @@
+import Dijkstra
 import Map
 import Node
 import PRM
@@ -11,11 +12,14 @@ map = Map.Map(size, n)
 initial = Node.Node(1, 1)
 goal = Node.Node(19, 19)
 
-number_of_node = 5
-nearest_neighbor = 3
+number_of_node = 100
+nearest_neighbor = 5
 
 prm = PRM.PRM(map, number_of_node, nearest_neighbor, initial, goal)
 prm.Roadmap_construction()
 prm.solve_query()
+di = Dijkstra(prm)
+di.shorted_path()
 
 prm.Plot()
+di.Plot()

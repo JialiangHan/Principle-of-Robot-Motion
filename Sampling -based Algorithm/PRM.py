@@ -38,7 +38,6 @@ class PRM:
         k_nearest_neighbor_goal = self.get_k_nearest_neighbor(self.goal, self.number_of_neighbors)
         self.vertices.append(self.initial)
         self.vertices.append(self.goal)
-        # k_nearest_neighbor should be a heapq
         node_nearest_initial = k_nearest_neighbor_initial.pop(0)
         while k_nearest_neighbor_initial:
             if self.connect(self.initial, node_nearest_initial[0]):
@@ -90,7 +89,7 @@ class PRM:
 
     def check_collision(self, node: Node.Node) -> bool:
         """
-        false: collisoin
+        false: collision
         true: collision free
         """
         for obstacle in self.map.obstacle_list:

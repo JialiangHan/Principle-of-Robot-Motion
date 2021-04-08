@@ -42,7 +42,7 @@ class Map:
         delta_x = (self.size[1] - self.size[0]) / self.number_of_obstacle
         for i in range(self.number_of_obstacle):
             for j in range(number_of_nodes):
-                random.seed(j)
+                # random.seed(j)
                 x = random.uniform(self.size[0] + 1 + i * delta_x, self.size[0] - 1 + (i + 1) * delta_x)
                 y = random.uniform(self.size[2] + 1, self.size[3] - 1)
                 node_list.append(Node.Node(x, y))
