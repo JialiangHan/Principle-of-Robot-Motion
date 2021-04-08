@@ -11,7 +11,10 @@ map = Map.Map(size, n)
 initial = Node.Node(1, 1)
 goal = Node.Node(19, 19)
 
-prm = PRM.PRM(map, 5, 3, initial, goal)
+number_of_node = 5
+nearest_neighbor = 3
+
+prm = PRM.PRM(map, number_of_node, nearest_neighbor, initial, goal)
 prm.Roadmap_construction()
 prm.solve_query()
 

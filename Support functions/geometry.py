@@ -28,7 +28,12 @@ def intersect(edge1: Edge.Edge, edge2: Edge.Edge) -> bool:
         CA = [edge2.start.x - edge1.start.x, edge2.start.y - edge1.start.y]
         CD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
         CB = [edge2.end.x - edge1.start.x, edge2.end.y - edge1.start.y]
-        if cross_product(CA, CD) * cross_product(CB, CD) < 0:
+        AB = [edge2.end.x - edge2.start.x, edge2.end.y - edge2.start.y]
+        AC = [edge1.start.x - edge2.start.x, edge1.start.y - edge2.start.y]
+        AD = [edge1.end.x - edge1.start.x, edge1.end.y - edge1.start.y]
+        result1 = cross_product(CA, CD) * cross_product(CB, CD)
+        result2 = cross_product(AC, AB) * cross_product(AD, AB)
+        if result1 < 0 and result2 < 0:
             return True
         else:
             return False
@@ -97,6 +102,13 @@ def node_in_polygon(node: Node.Node, polygon: Polygon.Polygon) -> bool:
     # create 射线
     line = Edge.Edge(node, Node.Node(10000, node.y))
     count = 0
+    for edge in polygon.edge_list:
+        if intersect(edge, line):
+            count = +1
+    if count % 2 == 0:
+        return False
+    else:
+        return True
 
 
 def vertex_in_obstacle(vertex: Vertex.Vertex, obstacle_list: list) -> Polygon.Polygon or None:

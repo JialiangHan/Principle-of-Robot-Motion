@@ -62,7 +62,8 @@ class PRM:
     def get_k_nearest_neighbor(self, vertex: Node.Node, k: int) -> list:
         distance_list = {}
         for node in self.vertices:
-            distance_list[node] = distance.dist(node, vertex)
+            if node != vertex:
+                distance_list[node] = distance.dist(node, vertex)
         k_nearest_neighbor = heapq.nsmallest(k, distance_list.items(), key=lambda x: x[1])
         self.neighbors[vertex] = k_nearest_neighbor
         return k_nearest_neighbor
@@ -101,6 +102,8 @@ class PRM:
         self.map.Plot()
         Plot.plot_Node(self.initial)
         Plot.plot_Node(self.goal)
+        for node in self.vertices:
+            Plot.plot_Node(node)
         for edge in self.edges:
             Plot.plot_Edge(edge)
         plt.show()

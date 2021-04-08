@@ -1,5 +1,5 @@
 import Node
-import distance
+# import distance
 
 
 class Edge:
@@ -18,7 +18,7 @@ class Edge:
             else:
                 self.start = end
                 self.end = start
-        self.length = distance.dist(start, end)
+        # self.length = distance.dist(start, end)
         # line function: Ax+By+C=0
         self.A = 0
         self.B = 0
